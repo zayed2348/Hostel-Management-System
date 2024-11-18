@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hostel Management System</title>
+    <style>
+        /* Ensure html and body take full height */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* Prevents scrolling */
+        }
+
+        /* Basic CSS for the navbar */
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://www.jainuniversity.ac.in/jain/theme/assets/images/contact/JGI-hostel.jpg'); /* Background image URL */
+            background-size: cover; /* Ensures the image covers the whole page */
+            background-position: center; /* Centers the image */
+            background-repeat: no-repeat; /* Prevents the image from repeating */
+            position: relative; /* Needed for absolute positioning of overlay */
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(144, 238, 144, 0.5); /* Light green tint with 50% opacity */
+            z-index: -1; /* Places the overlay behind the content */
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #333;
+            padding: 10px;
+            position: relative; /* Needed for positioning content */
+            z-index: 1; /* Places the navbar above the overlay */
+        }
+        .navbar .logo {
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        .navbar .nav-buttons {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .navbar .nav-buttons button {
+            background-color: #555;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
+        .navbar .nav-buttons button:hover {
+            background-color: #777;
+        }
+        .navbar .nav-buttons .user-info {
+            color: white;
+            margin-right: 10px;
+        }
+
+        .content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            height: calc(100vh - 160px); /* Adjust height to fit within viewport minus navbar and footer height */
+            box-sizing: border-box; /* Ensures padding is included in height calculation */
+        }
+
+        .text-content {
+            max-width: 50%;
+            color: white;
+        }
+        .text-content h1 {
+            font-size: 48px; /* Increased font size */
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6); /* Shadow with offset and blur */
+        }
+        .text-content a {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 15px 30px; /* Increased padding for a larger button */
+            font-size: 24px; /* Increased font size */
+            background-color: #333;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .text-content a:hover {
+            background-color: #555;
+        }
+        .image-content {
+            max-width: 45%;
+        }
+        .image-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .footer {
+            background-color: rgba(51, 51, 51, 0.8); /* Slightly transparent background */
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            width: 100%;
+        }
+        .footer p {
+            margin: 0;
+            padding: 10px 0;
+        }
+        .footer .contact, .footer .about-us {
+            margin-bottom: 10px;
+        }
+        .footer .contact h2, .footer .about-us h2 {
+            margin-top: 0;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    {% load static %}
+    <div class="navbar">
+        <a href="#" class="logo">HMS</a>
+        
+        <div class="nav-buttons">
+            {% if first_name %}
+                <span class="user-info">Hello, {{ first_name }}!</span>
+                <button onclick="location.href='{% url 'user_logout' %}'">Logout</button>
+                <button onclick="location.href='{% url 'hostel_list' %}'">Book Now</button>
+            {% else %}
+                <button onclick="location.href='{% url 'user_login' %}'">User Login</button>
+                <button onclick="location.href='{% url 'register' %}'">Register</button>
+                <button onclick="location.href='/admin/'">Admin Login</button>
+            {% endif %}
+        </div>
+    </div>
+    <div class="content">
+        <div class="text-content">
+            <h1>Welcome to Hostel Management System</h1>
+            <a href="{% url 'hostel_list' %}">View Hostels</a>
+        </div>
+        <div class="image-content">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3TKwcZPylPNO-rcCXxV2HDwfqhgSNCPxteg&s" alt="Hostel Image">
+        </div>
+    </div>
+    <div class="footer">
+        <div class="contact">
+            <h2>Contact Us</h2>
+            <p>Email: support@hostelmanagement.com</p>
+            <p>Phone: +1 (234) 567-890</p>
+        </div>
+        <div class="about-us">
+            <h2>About Us</h2>
+            <p>Our Hostel Management System provides an easy and efficient way to manage hostel bookings. Whether you are a student looking for a hostel or a hostel owner managing bookings, our platform offers a user-friendly interface to meet your needs. Register, login, and book your stay at one of our listed hostels today!</p>
+        </div>
+    </div>
+</body>
+</html>

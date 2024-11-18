@@ -1,0 +1,51 @@
+<!-- hostel/templates/hostel/booking_confirmation.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Booking Confirmation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        p {
+            color: #666;
+        }
+        .details {
+            margin-top: 20px;
+        }
+        .details p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Booking Confirmation</h1>
+        <p>Thank you for your booking!</p>
+        <div class="details">
+            <p><strong>Hostel:</strong> {{ booking.room.hostel.name }}</p>
+            <p><strong>Room:</strong> {{ booking.room.room_number }}</p>
+            <p><strong>Start Date:</strong> {{ booking.start_date }}</p>
+            <p><strong>End Date:</strong> {{ booking.end_date }}</p>
+            <p><strong>Payment Method:</strong> {{ booking.get_payment_method_display }}</p>
+            <p><strong>Payment Details:</strong> {{ booking.payment_details }}</p>
+        </div>
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,71 @@
+<!-- hostel/templates/hostel/hostel_details.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ hostel.name }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        h2 {
+            color: #555;
+        }
+        p {
+            color: #666;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 10px;
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #007bff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .book-now-btn {
+            display: inline-block;
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .book-now-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>{{ hostel.name }}</h1>
+    <p>{{ hostel.address }}</p>
+    <h2>Rooms</h2>
+    <ul>
+        {% for room in rooms %}
+            <li>Room {{ room.room_number }} - Capacity: {{ room.capacity }}</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'hostel_list' %}">Back to Hostel List</a>
+    <a href="{% url 'book_room' hostel.id %}" class="book-now-btn">Book Now</a>
+</body>
+</html>
